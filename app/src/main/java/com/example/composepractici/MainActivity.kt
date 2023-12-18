@@ -3,6 +3,8 @@ package com.example.composepractici
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -27,9 +29,28 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun newText(){
-    Text(text = "Hello World",
-        color = Color.Black,
-        fontFamily = FontFamily.Monospace
-    )
-}
+    Column {
+        Row {
+            Text(text = "Hello World",
+                color = Color.Black,
+                fontFamily = FontFamily.Monospace
+            )
+            Text(text = "Hello World",
+                color = Color.Black,
+                fontFamily = FontFamily.Monospace
+            )
+        }
+        Row {
+            Text(text = "Hello World",
+                color = Color.Black,
+                fontFamily = FontFamily.Monospace
+            )
+            Text(text = "Hello World",
+                color = Color.Black,
+                fontFamily = FontFamily.Monospace
+            )
+        }
+    }
 
+
+}
