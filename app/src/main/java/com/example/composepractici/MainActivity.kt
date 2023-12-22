@@ -56,21 +56,21 @@ fun newText(){
                 .fillMaxWidth(0.5f)
                 .background(Color.Cyan)
         ) {
-            Text(text = "Hello World",
+            Text(text = "Amit World",
                 color = Color.Black,
                 fontFamily = FontFamily.Monospace
             )
-            Text(text = "Hello World",
+            Text(text = "Amit World",
                 color = Color.Black,
                 fontFamily = FontFamily.Monospace
             )
         }
         Row {
-            Text(text = "Hello World",
+            Text(text = "Amit World",
                 color = Color.Black,
                 fontFamily = FontFamily.Monospace
             )
-            Text(text = "Hello World",
+            Text(text = "Amit World",
                 color = Color.Black,
                 fontFamily = FontFamily.Monospace
             )
