@@ -1,107 +1,68 @@
-package com.example.composepractici
-
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.absoluteOffset
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.sp
-import com.example.composepractici.ui.theme.ComposePracticiTheme
+import com.example.featherandroidtasks.ui.theme.FeatherAndroidTasksTheme
+import java.net.URI
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            newText(
-
-            )
+            FeatherAndroidTasksTheme {
+                // Вызовите Composable-функцию, отображающую ваш график
+                RealTimeGraph()
+            }
         }
     }
 }
 
+@Composable
+fun RealTimeGraph() {
+    // Инициализация объекта WebSocketClient
+    val webSocketClient = remember {
+        MyWebSocketClient(URI("wss://stream.binance.com:9443/ws/!miniTicker@arr"))
+    }
+
+    // Запуск WebSocket при старте Composable
+    LaunchedEffect(webSocketClient) {
+        webSocketClient.connect()
+    }
+
+    // Composable для отображения графика
+    Canvas(
+        modifier = Modifier.fillMaxSize(),
+        onDraw = {
+            // Нарисуйте график здесь, используя данные из WebSocket
+            drawGraph(this)
+        }
+    )
+}
+
+// Пример отрисовки графика (замените его своим кодом)
+private fun DrawScope.drawGraph() {
+    // Рисование простого прямоугольника
+    drawRoundRect(
+        color = Color.Blue,
+        size = size,
+        cornerRadius = CornerRadius(0f)
+    )
+}
 
 @Preview(showBackground = true)
 @Composable
-fun newText(){
-    Column (
-        modifier = Modifier
-            .background(Color.LightGray)
-            .fillMaxHeight()
-            .fillMaxWidth(),
-
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(0.5f)
-                .background(Color.Cyan)
-        ) {
-            Text(text = "Amit World",
-                color = Color.Black,
-                fontFamily = FontFamily.Monospace
-            )
-            Text(text = "Amit World",
-                color = Color.Black,
-                fontFamily = FontFamily.Monospace
-            )
-        }
-        Row {
-            Text(text = "Amit World",
-                color = Color.Black,
-                fontFamily = FontFamily.Monospace
-            )
-            Text(text = "Amit World",
-                color = Color.Black,
-                fontFamily = FontFamily.Monospace
-            )
-        }
-    }
-}
-
-@Preview (showBackground = true)
-@Composable
-fun novba(){
-    Row (
-        modifier = Modifier
-            .background(Color.White)
-            .fillMaxWidth()
-            .height(Dp(40f)),
-        horizontalArrangement = Arrangement.SpaceAround,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            text = "home",
-            fontSize = 20.sp
-            )
-        Text(
-            text = "Market",
-            fontSize = 20.sp
-            )
-        Text(
-            text = "Account",
-            fontSize = 20.sp,
-
-            )
-
+fun DefaultPreview() {
+    FeatherAndroidTasksTheme {
+        RealTimeGraph()
     }
 }

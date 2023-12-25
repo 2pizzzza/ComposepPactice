@@ -50,6 +50,15 @@ android {
 }
 
 dependencies {
+    // Добавьте зависимости Jetpack Compose
+    implementation( "androidx.activity:activity-compose:1.3.1")
+    implementation( "androidx.compose.foundation:foundation:1.0.4")
+    implementation( "androidx.compose.material:material:1.0.4")
+    implementation( "androidx.compose.ui:ui-tooling:1.0.4")
+    implementation( "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
+
+    // Добавьте зависимость для библиотеки для работы с WebSocket
+    implementation( "org.java-websocket:Java-WebSocket:1.5.5")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
