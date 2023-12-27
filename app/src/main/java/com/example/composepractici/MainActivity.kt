@@ -10,9 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
-import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.featherandroidtasks.ui.theme.FeatherAndroidTasksTheme
 import java.net.URI
 
 class MainActivity : ComponentActivity() {
@@ -50,7 +48,7 @@ fun RealTimeGraph() {
 }
 
 // Пример отрисовки графика (замените его своим кодом)
-private fun DrawScope.drawGraph() {
+private fun DrawScope.drawGraph(drawScope: DrawScope) {
     // Рисование простого прямоугольника
     drawRoundRect(
         color = Color.Blue,
@@ -65,4 +63,9 @@ fun DefaultPreview() {
     FeatherAndroidTasksTheme {
         RealTimeGraph()
     }
+}
+
+@Composable
+fun FeatherAndroidTasksTheme(content: @Composable () -> Unit) {
+    TODO("Not yet implemented")
 }
